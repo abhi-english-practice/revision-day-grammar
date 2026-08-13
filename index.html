@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aptis B2+ Grammar Dossier · To V / V-ing / Always + Continuous</title>
+<style>
+:root{
+  --paper:#f3efe7;--card:#fbf8f2;--ink:#202a34;--muted:#69737d;--line:#cec6ba;
+  --navy:#243b53;--red:#8c4038;--green:#2d6851;--soft:#ebe4d8;--shadow:0 14px 34px rgba(35,42,48,.09)
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.55}
+button{font:inherit}
+.shell{max-width:820px;margin:auto;padding:16px 14px 34px}
+.utility{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding:4px 2px 12px}
+.brand{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--navy);font-size:17px}
+.sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.mini{border:1px solid #bdb4a7;background:transparent;color:var(--navy);padding:6px 9px;cursor:pointer;font-size:12px;font-weight:700}
+.mini.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.timer{font-variant-numeric:tabular-nums;font-weight:850;min-width:50px;text-align:center;color:var(--navy)}
+.timer.warn{color:var(--red)}
+.progress-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin:12px 2px 15px}
+.progress{height:4px;background:#dcd4c8;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--navy);width:2%;transition:width .2s}
+.counter{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:24px}
+.meta{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:16px}
+.label{font-size:10px;font-weight:850;letter-spacing:.11em;text-transform:uppercase;color:var(--red)}
+.topic{font-size:12px;color:var(--muted);text-align:right}
+.question{font-family:Georgia,"Times New Roman",serif;font-size:25px;line-height:1.45;margin:0 0 18px;color:#1d2935}
+.gap{color:var(--red);font-weight:800;letter-spacing:.05em}
+.options{display:grid;gap:9px}
+.option{display:flex;gap:11px;align-items:center;width:100%;text-align:left;border:1px solid #c8c0b4;background:#fffdf9;color:var(--ink);padding:12px 14px;cursor:pointer;transition:.14s}
+.option:hover:not(:disabled){border-color:#8795a3;transform:translateY(-1px)}
+.option:disabled{cursor:default}
+.letter{width:26px;height:26px;display:grid;place-items:center;border:1px solid #b8b0a5;background:#f0ebe3;font-size:12px;font-weight:850;color:var(--navy);flex:0 0 auto}
+.option.selected{border-color:var(--navy);box-shadow:inset 3px 0 0 var(--navy)}
+.option.correct{border-color:#789b8b;background:#eaf3ee;box-shadow:inset 3px 0 0 var(--green)}
+.option.wrong{border-color:#be887e;background:#f8ece9;box-shadow:inset 3px 0 0 var(--red)}
+.actions{display:flex;gap:9px;justify-content:flex-end;margin-top:17px}
+.btn{border:1px solid var(--navy);background:var(--navy);color:white;padding:9px 14px;cursor:pointer;font-weight:800}
+.btn.secondary{background:transparent;color:var(--navy)}
+.btn:disabled{opacity:.36;cursor:not-allowed}
+.feedback{display:none;margin-top:20px;border-top:1px solid var(--line);padding-top:17px}
+.feedback.show{display:block}
+.verdict{display:flex;gap:9px;align-items:center;font-weight:850;margin-bottom:13px}
+.verdict.ok{color:var(--green)}.verdict.bad{color:var(--red)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.notes{display:grid;gap:9px}
+.note{background:#f5f0e8;border-left:3px solid #aaa297;padding:10px 12px}
+.note.why{border-left-color:var(--navy)}.note.contrast{border-left-color:#8d6a3e}.note.colloc{border-left-color:var(--red)}.note.vi{border-left-color:var(--green)}
+.note-title{font-size:9px;text-transform:uppercase;letter-spacing:.11em;font-weight:900;color:var(--muted);margin-bottom:3px}
+.note p{margin:0;font-size:13px}
+.pattern{display:inline-block;margin-top:7px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#ebe5dc;border:1px solid #d8cfc3;padding:6px 8px;font-size:12px}
+.pause-screen{display:none;margin:18px 0 2px;border:1px dashed #a99f91;padding:18px;text-align:center;color:var(--muted);font-size:13px}
+.paused .pause-screen{display:block}
+.paused .question,.paused .options,.paused .actions{display:none}
+.result{display:none;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px}
+.result.show{display:block}
+.result h2{font-family:Georgia,"Times New Roman",serif;color:var(--navy);margin:0 0 8px}
+.bigscore{font-size:42px;font-weight:900;letter-spacing:-.03em}
+.result p{color:var(--muted)}
+.mistakes{display:grid;gap:8px;margin-top:16px}
+.mistake{border-top:1px solid var(--line);padding-top:8px;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:620px){
+  .shell{padding:10px 9px 24px}.utility{grid-template-columns:1fr}.tools{justify-content:flex-start}
+  .card{padding:19px 14px}.question{font-size:22px}.actions{justify-content:stretch}.btn{flex:1}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="utility">
+    <div>
+      <div class="brand">APTIS · Grammar Dossier B2+</div>
+      <div class="sub">To-infinitive · V-ing · repeated behaviour · advanced structures</div>
+    </div>
+    <div class="tools">
+      <span class="timer" id="timer">60s</span>
+      <button class="mini" id="pauseBtn" type="button">Pause</button>
+      <button class="mini active" id="soundBtn" type="button">Sound on</button>
+      <span class="counter" id="scoreText">Đúng 0 · Sai 0</span>
+    </div>
+  </header>
+
+  <div id="drillArea">
+    <div class="progress-row">
+      <div class="progress"><span id="progressBar"></span></div>
+      <div class="counter" id="countText">01 / 50</div>
+    </div>
+
+    <section class="card" id="card">
+      <div class="meta">
+        <div class="label">Choose the best answer</div>
+        <div class="topic" id="topic"></div>
+      </div>
+
+      <p class="question" id="question"></p>
+      <div class="options" id="options"></div>
+      <div class="pause-screen">Đã tạm dừng · đồng hồ 60 giây không chạy.<br>Nhấn <strong>Resume</strong> để tiếp tục.</div>
+
+      <div class="actions">
+        <button class="btn secondary" id="resetOne" type="button">Chọn lại</button>
+        <button class="btn" id="checkBtn" type="button" disabled>Kiểm tra</button>
+        <button class="btn hidden" id="nextBtn" type="button">Câu tiếp theo</button>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <div class="verdict" id="verdict"><span class="dot"></span><span id="verdictText"></span></div>
+        <div class="notes">
+          <div class="note why">
+            <div class="note-title">Vì sao chọn?</div>
+            <p id="reason"></p>
+            <div class="pattern" id="pattern"></div>
+          </div>
+          <div class="note contrast">
+            <div class="note-title">Phân biệt nhanh</div>
+            <p id="contrast"></p>
+          </div>
+          <div class="note colloc">
+            <div class="note-title">Collocation</div>
+            <p><strong id="collocation"></strong> · <span id="collocationVi"></span></p>
+          </div>
+          <div class="note vi">
+            <div class="note-title">Dịch song ngữ</div>
+            <p id="translation"></p>
+            <p style="margin-top:4px;color:var(--muted)" id="fullEnglish"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="result" id="resultArea">
+    <div class="label">DOSSIER COMPLETE</div>
+    <h2>Kết quả</h2>
+    <div class="bigscore" id="finalScore"></div>
+    <p id="finalText"></p>
+    <div class="actions" style="justify-content:flex-start">
+      <button class="btn" id="retryWrong" type="button">Luyện lại câu sai</button>
+      <button class="btn secondary" id="restartAll" type="button">Làm lại 50 câu</button>
+    </div>
+    <div class="mistakes" id="mistakes"></div>
+  </section>
+</div>
+
+<script>
+const ALL_ITEMS = [{"id": 1, "topic": "remember + V-ing", "sentence": "I clearly remember ___ the door before I left the office.", "options": ["to lock", "locking", "lock"], "answer": 1, "vi": "Tôi nhớ rõ là mình đã khóa cửa trước khi rời văn phòng.", "reason": "Dùng **remember + V-ing** khi nhớ lại một hành động đã thực sự xảy ra trong quá khứ. Ở đây người nói nhớ việc mình đã khóa cửa.", "pattern": "remember + V-ing = nhớ đã làm gì", "contrast": "remember + to V = nhớ phải làm một việc; remember + V-ing = nhớ lại việc đã làm", "collocation": "lock the door", "collocation_vi": "khóa cửa"}, {"id": 2, "topic": "remember + to-infinitive", "sentence": "Please remember ___ the attachment before you send the email.", "options": ["adding", "to add", "add"], "answer": 1, "vi": "Hãy nhớ thêm tệp đính kèm trước khi bạn gửi email.", "reason": "Dùng **remember + to V** khi nói về việc cần nhớ để thực hiện sau đó. Việc thêm tệp đính kèm chưa xảy ra tại thời điểm lời nhắc được đưa ra.", "pattern": "remember + to V = nhớ phải làm gì", "contrast": "remember doing = nhớ lại một việc đã xảy ra; remember to do = không quên thực hiện nhiệm vụ", "collocation": "add an attachment", "collocation_vi": "thêm tệp đính kèm"}, {"id": 3, "topic": "stop + to-infinitive", "sentence": "We stopped ___ some coffee on the way to the conference.", "options": ["getting", "to get", "get"], "answer": 1, "vi": "Chúng tôi dừng lại để mua cà phê trên đường đến hội nghị.", "reason": "**stop + to V** nghĩa là dừng một hoạt động đang làm để chuyển sang làm việc khác. Chúng tôi dừng hành trình để mua cà phê.", "pattern": "stop + to V = dừng lại để làm việc khác", "contrast": "stop doing = ngừng hẳn hoạt động; stop to do = tạm dừng việc A để làm việc B", "collocation": "get some coffee", "collocation_vi": "mua/lấy một ít cà phê"}, {"id": 4, "topic": "stop + V-ing", "sentence": "He stopped ___ coffee after his doctor advised him to cut down on caffeine.", "options": ["to drink", "drinking", "drink"], "answer": 1, "vi": "Anh ấy ngừng uống cà phê sau khi bác sĩ khuyên giảm lượng caffeine.", "reason": "**stop + V-ing** nghĩa là chấm dứt một hoạt động. Ở đây anh ấy không tiếp tục uống cà phê nữa.", "pattern": "stop + V-ing = ngừng làm gì", "contrast": "stop drinking = bỏ/ngừng uống; stop to drink = dừng việc khác để uống", "collocation": "cut down on caffeine", "collocation_vi": "cắt giảm lượng caffeine"}, {"id": 5, "topic": "try + V-ing", "sentence": "If the page still will not load, try ___ the app and opening it again.", "options": ["restarting", "to restart", "restart"], "answer": 0, "vi": "Nếu trang vẫn không tải được, hãy thử khởi động lại ứng dụng rồi mở lại.", "reason": "**try + V-ing** dùng khi thử một phương án để xem nó có giải quyết được vấn đề hay không.", "pattern": "try + V-ing = thử một phương án", "contrast": "try doing = thử xem có hiệu quả không; try to do = cố gắng thực hiện việc khó", "collocation": "restart the app", "collocation_vi": "khởi động lại ứng dụng"}, {"id": 6, "topic": "try + to-infinitive", "sentence": "She tried ___ the box by herself, but it was far too heavy.", "options": ["lifting", "lift", "to lift"], "answer": 2, "vi": "Cô ấy cố nâng chiếc hộp một mình nhưng nó quá nặng.", "reason": "**try + to V** nhấn mạnh nỗ lực thực hiện một hành động, thường khi việc đó khó hoặc có thể thất bại.", "pattern": "try + to V = cố gắng làm gì", "contrast": "try to lift = cố nâng; try lifting = thử cách nâng xem có tác dụng/khả thi không", "collocation": "lift a heavy box", "collocation_vi": "nâng một chiếc hộp nặng"}, {"id": 7, "topic": "regret + to-infinitive", "sentence": "We regret ___ you that your application has not been successful.", "options": ["informing", "to inform", "inform"], "answer": 1, "vi": "Chúng tôi rất tiếc phải thông báo rằng đơn của bạn không thành công.", "reason": "Trong văn phong trang trọng, **regret + to inform/tell/say** dùng khi người nói lấy làm tiếc về điều sắp thông báo ngay lúc này.", "pattern": "regret + to inform/tell = tiếc phải thông báo", "contrast": "regret doing = hối tiếc về việc đã làm; regret to inform = tiếc khi phải báo tin", "collocation": "application has been successful", "collocation_vi": "đơn đăng ký đã được chấp thuận/thành công"}, {"id": 8, "topic": "regret + V-ing", "sentence": "She now regrets ___ so much money on things she did not need.", "options": ["to spend", "spending", "spend"], "answer": 1, "vi": "Giờ cô ấy hối tiếc vì đã tiêu quá nhiều tiền vào những thứ mình không cần.", "reason": "**regret + V-ing** diễn tả sự hối tiếc về một hành động đã xảy ra trong quá khứ.", "pattern": "regret + V-ing = hối tiếc vì đã làm gì", "contrast": "regret spending = tiếc việc đã tiêu; regret to say = tiếc phải nói ngay bây giờ", "collocation": "spend money on something", "collocation_vi": "tiêu tiền vào việc/thứ gì"}, {"id": 9, "topic": "mean + V-ing", "sentence": "Taking this position would mean ___ most weekends during the busy season.", "options": ["working", "to work", "work"], "answer": 0, "vi": "Nhận vị trí này đồng nghĩa với việc phải làm hầu hết các cuối tuần trong mùa bận rộn.", "reason": "**mean + V-ing** = bao hàm/đồng nghĩa với việc gì như một hệ quả.", "pattern": "mean + V-ing = đồng nghĩa với/bao hàm việc", "contrast": "mean doing = kéo theo; mean to do = có ý định làm", "collocation": "work weekends", "collocation_vi": "làm việc vào cuối tuần"}, {"id": 10, "topic": "mean + to-infinitive", "sentence": "I meant ___ you yesterday, but the meeting ran much longer than expected.", "options": ["calling", "call", "to call"], "answer": 2, "vi": "Tôi đã định gọi cho bạn hôm qua nhưng cuộc họp kéo dài lâu hơn dự kiến.", "reason": "**mean + to V** = có ý định làm gì. Người nói đã có ý định gọi nhưng không thực hiện được.", "pattern": "mean + to V = định/có ý định làm gì", "contrast": "mean to call = định gọi; mean working = đồng nghĩa với việc phải làm", "collocation": "run longer than expected", "collocation_vi": "kéo dài lâu hơn dự kiến"}, {"id": 11, "topic": "go on + to-infinitive", "sentence": "After discussing the budget, the chair went on ___ the staffing issue.", "options": ["discussing", "to discuss", "discuss"], "answer": 1, "vi": "Sau khi thảo luận ngân sách, chủ tọa chuyển sang thảo luận vấn đề nhân sự.", "reason": "**go on + to V** dùng khi kết thúc một việc rồi chuyển sang một việc khác.", "pattern": "go on + to V = tiếp tục bằng việc khác", "contrast": "go on doing = tiếp tục cùng một việc; go on to do = chuyển sang việc tiếp theo", "collocation": "discuss an issue", "collocation_vi": "thảo luận một vấn đề"}, {"id": 12, "topic": "go on + V-ing", "sentence": "Despite several warnings, he went on ___ for nearly twenty minutes.", "options": ["to complain", "complaining", "complain"], "answer": 1, "vi": "Bất chấp nhiều lời nhắc, anh ấy vẫn tiếp tục phàn nàn gần hai mươi phút.", "reason": "**go on + V-ing** = tiếp tục cùng một hành động đang diễn ra.", "pattern": "go on + V-ing = tiếp tục làm cùng việc", "contrast": "go on complaining = tiếp tục phàn nàn; go on to explain = sau đó chuyển sang giải thích", "collocation": "ignore a warning", "collocation_vi": "phớt lờ lời cảnh báo/nhắc nhở"}, {"id": 13, "topic": "need + V-ing", "sentence": "The air conditioner is making a strange noise; it probably needs ___.", "options": ["to service", "servicing", "service"], "answer": 1, "vi": "Máy điều hòa đang phát ra tiếng lạ; có lẽ nó cần được bảo dưỡng.", "reason": "Với vật cần được xử lý, **need + V-ing** mang nghĩa bị động: **needs servicing = needs to be serviced**.", "pattern": "need + V-ing = need to be + V3", "contrast": "The car needs repairing = The car needs to be repaired.", "collocation": "service an air conditioner", "collocation_vi": "bảo dưỡng máy điều hòa"}, {"id": 14, "topic": "afford + to-infinitive", "sentence": "We cannot afford ___ another deadline this quarter.", "options": ["missing", "to miss", "miss"], "answer": 1, "vi": "Chúng ta không thể để lỡ thêm một thời hạn nào nữa trong quý này.", "reason": "Sau **can/cannot afford**, động từ tiếp theo dùng **to-infinitive**.", "pattern": "afford + to V", "contrast": "Không dùng afford doing trong cấu trúc chuẩn này.", "collocation": "miss a deadline", "collocation_vi": "lỡ thời hạn"}, {"id": 15, "topic": "suggest + V-ing", "sentence": "The consultant suggested ___ the launch until the technical issues were resolved.", "options": ["delaying", "to delay", "delay"], "answer": 0, "vi": "Chuyên gia tư vấn đề xuất hoãn việc ra mắt cho đến khi các vấn đề kỹ thuật được xử lý.", "reason": "Sau **suggest** khi không có tân ngữ + mệnh đề, dùng **V-ing**: suggest doing something.", "pattern": "suggest + V-ing", "contrast": "suggest doing; hoặc suggest that + subject + (should) + V", "collocation": "delay a launch", "collocation_vi": "hoãn việc ra mắt"}, {"id": 16, "topic": "deny + V-ing", "sentence": "The employee denied ___ confidential information to anyone outside the company.", "options": ["to reveal", "revealing", "reveal"], "answer": 1, "vi": "Nhân viên phủ nhận việc tiết lộ thông tin mật cho bất kỳ ai bên ngoài công ty.", "reason": "**deny** được theo sau bởi danh từ hoặc **V-ing**, không dùng deny to do.", "pattern": "deny + V-ing", "contrast": "deny revealing = phủ nhận đã tiết lộ", "collocation": "confidential information", "collocation_vi": "thông tin mật"}, {"id": 17, "topic": "mind + V-ing", "sentence": "Would you mind ___ the window? It is getting quite cold in here.", "options": ["to close", "close", "closing"], "answer": 2, "vi": "Bạn có phiền đóng cửa sổ không? Trong này đang khá lạnh.", "reason": "Cấu trúc lịch sự **Would you mind + V-ing...?**", "pattern": "Would you mind + V-ing?", "contrast": "mind luôn đi với V-ing khi theo sau trực tiếp bằng động từ.", "collocation": "close the window", "collocation_vi": "đóng cửa sổ"}, {"id": 18, "topic": "manage + to-infinitive", "sentence": "Despite the short notice, the team managed ___ the presentation on time.", "options": ["finishing", "to finish", "finish"], "answer": 1, "vi": "Mặc dù được báo gấp, đội vẫn xoay xở hoàn thành bài thuyết trình đúng hạn.", "reason": "**manage + to V** = xoay xở/thành công trong việc làm một điều khó.", "pattern": "manage + to V", "contrast": "Không dùng manage doing trong nghĩa này.", "collocation": "finish on time", "collocation_vi": "hoàn thành đúng hạn"}, {"id": 19, "topic": "postpone + V-ing", "sentence": "They decided to postpone ___ a final decision until more data was available.", "options": ["making", "to make", "make"], "answer": 0, "vi": "Họ quyết định hoãn đưa ra quyết định cuối cùng cho đến khi có thêm dữ liệu.", "reason": "**postpone + V-ing** = trì hoãn việc làm gì.", "pattern": "postpone + V-ing", "contrast": "postpone making a decision, không dùng postpone to make.", "collocation": "make a final decision", "collocation_vi": "đưa ra quyết định cuối cùng"}, {"id": 20, "topic": "risk + V-ing", "sentence": "By ignoring the warning signs, the company risked ___ its reputation.", "options": ["to damage", "damage", "damaging"], "answer": 2, "vi": "Bằng việc phớt lờ các dấu hiệu cảnh báo, công ty có nguy cơ làm tổn hại danh tiếng.", "reason": "**risk + V-ing** = có nguy cơ làm gì/gây ra điều gì.", "pattern": "risk + V-ing", "contrast": "risk damaging, không dùng risk to damage.", "collocation": "damage a reputation", "collocation_vi": "làm tổn hại danh tiếng"}, {"id": 21, "topic": "can't help + V-ing", "sentence": "I could not help ___ when he read the message in such a serious voice.", "options": ["laughing", "to laugh", "laugh"], "answer": 0, "vi": "Tôi không thể nhịn cười khi anh ấy đọc tin nhắn bằng giọng nghiêm trọng như vậy.", "reason": "Cụm cố định **cannot/could not help + V-ing** = không thể không làm gì.", "pattern": "can't help + V-ing", "contrast": "Đây là cấu trúc cố định; help không mang nghĩa 'giúp đỡ' ở đây.", "collocation": "in a serious voice", "collocation_vi": "bằng giọng nghiêm túc"}, {"id": 22, "topic": "encourage + object + to-infinitive", "sentence": "The trainer encouraged us ___ questions whenever anything was unclear.", "options": ["asking", "ask", "to ask"], "answer": 2, "vi": "Người hướng dẫn khuyến khích chúng tôi đặt câu hỏi bất cứ khi nào có điều chưa rõ.", "reason": "**encourage + someone + to V**. Có tân ngữ **us**, sau đó là to-infinitive.", "pattern": "encourage + object + to V", "contrast": "Khác với suggest + V-ing; encourage cần object + to V trong cấu trúc này.", "collocation": "ask questions", "collocation_vi": "đặt câu hỏi"}, {"id": 23, "topic": "prevent + from + V-ing", "sentence": "Security staff prevented visitors from ___ the restricted area.", "options": ["entering", "to enter", "enter"], "answer": 0, "vi": "Nhân viên an ninh ngăn khách vào khu vực hạn chế.", "reason": "Cấu trúc **prevent someone from + V-ing**. Sau giới từ **from** phải dùng V-ing.", "pattern": "prevent + object + from + V-ing", "contrast": "Sau giới từ, dùng gerund: from entering.", "collocation": "restricted area", "collocation_vi": "khu vực hạn chế"}, {"id": 24, "topic": "passive make + to-infinitive", "sentence": "We were made ___ outside for almost an hour before the office opened.", "options": ["waiting", "wait", "to wait"], "answer": 2, "vi": "Chúng tôi bị bắt phải chờ bên ngoài gần một giờ trước khi văn phòng mở cửa.", "reason": "Chủ động: **make someone do**. Khi chuyển sang bị động: **be made to do** — phải khôi phục **to**.", "pattern": "make + object + V → be made + to V", "contrast": "They made us wait → We were made to wait.", "collocation": "wait outside", "collocation_vi": "chờ bên ngoài"}, {"id": 25, "topic": "see + object + bare infinitive", "sentence": "I saw him ___ the building and get into a taxi.", "options": ["leaving", "to leave", "leave"], "answer": 2, "vi": "Tôi thấy anh ấy rời tòa nhà rồi lên taxi.", "reason": "Sau động từ tri giác như **see**, dùng **object + bare infinitive** khi người nói chứng kiến toàn bộ hành động như một sự kiện hoàn chỉnh.", "pattern": "see + object + bare infinitive", "contrast": "see someone leave = thấy toàn bộ hành động; see someone leaving = thấy hành động đang diễn ra", "collocation": "get into a taxi", "collocation_vi": "lên taxi"}, {"id": 26, "topic": "see + object + V-ing", "sentence": "When I looked out of the window, I saw him ___ the building.", "options": ["to leave", "leaving", "leave"], "answer": 1, "vi": "Khi nhìn ra cửa sổ, tôi thấy anh ấy đang rời tòa nhà.", "reason": "**see + object + V-ing** nhấn mạnh hành động đang diễn ra tại thời điểm quan sát.", "pattern": "see + object + V-ing", "contrast": "leaving = đang trong quá trình rời đi; leave = nhìn thấy trọn vẹn sự kiện", "collocation": "look out of the window", "collocation_vi": "nhìn ra ngoài cửa sổ"}, {"id": 27, "topic": "always + present continuous · irritation", "sentence": "He is always ___ me by borrowing my charger without asking.", "options": ["annoy", "annoying", "to annoy"], "answer": 1, "vi": "Anh ấy cứ luôn làm tôi khó chịu bằng cách mượn sạc mà không hỏi.", "reason": "**always + present continuous** thường dùng để thể hiện sự khó chịu, phàn nàn hoặc chỉ trích về hành vi lặp đi lặp lại. Đây không chỉ là tần suất trung tính.", "pattern": "be + always + V-ing = cứ luôn... (thường mang sắc thái khó chịu)", "contrast": "He always borrows it = mô tả thói quen; He is always borrowing it = người nói bực vì việc đó cứ lặp lại.", "collocation": "borrow something without asking", "collocation_vi": "mượn thứ gì mà không hỏi"}, {"id": 28, "topic": "constantly + present continuous", "sentence": "My neighbour is constantly ___ loud music late at night.", "options": ["playing", "play", "to play"], "answer": 0, "vi": "Hàng xóm của tôi cứ liên tục mở nhạc to vào đêm muộn.", "reason": "**constantly + present continuous** có thể nhấn mạnh hành vi lặp lại gây phiền toái hoặc khó chịu.", "pattern": "be + constantly + V-ing", "contrast": "constantly playing nhấn mạnh sự lặp lại đáng bực; plays thường chỉ mô tả thói quen.", "collocation": "play loud music", "collocation_vi": "mở/chơi nhạc lớn"}, {"id": 29, "topic": "always + present simple · neutral habit", "sentence": "She always ___ her keys on the small table by the door when she gets home.", "options": ["is leaving", "leaves", "leaving"], "answer": 1, "vi": "Cô ấy luôn để chìa khóa trên chiếc bàn nhỏ cạnh cửa khi về nhà.", "reason": "Ở đây **always** mô tả một thói quen trung tính, đều đặn, nên dùng **present simple**. Không có sắc thái phàn nàn rõ ràng.", "pattern": "always + present simple = thói quen/tần suất thông thường", "contrast": "She always leaves... = thói quen; She is always leaving her keys everywhere = lời phàn nàn.", "collocation": "leave the keys on the table", "collocation_vi": "để chìa khóa trên bàn"}, {"id": 30, "topic": "forever + present continuous", "sentence": "You are forever ___ your mind at the last minute.", "options": ["change", "to change", "changing"], "answer": 2, "vi": "Bạn cứ đổi ý vào phút chót mãi.", "reason": "**forever + present continuous** thường thể hiện sự khó chịu trước một hành vi lặp đi lặp lại.", "pattern": "be + forever + V-ing", "contrast": "forever changing your mind = cứ thay đổi ý kiến mãi, thường mang sắc thái phê bình.", "collocation": "change your mind", "collocation_vi": "đổi ý"}, {"id": 31, "topic": "always + present continuous · question", "sentence": "Why are you always ___ me when I am trying to explain something?", "options": ["interrupt", "interrupting", "to interrupt"], "answer": 1, "vi": "Tại sao bạn cứ luôn ngắt lời tôi khi tôi đang cố giải thích điều gì đó?", "reason": "**are always interrupting** diễn tả hành vi lặp lại khiến người nói khó chịu. Present continuous ở đây không nhất thiết chỉ hành động ngay lúc nói.", "pattern": "Why + be + subject + always + V-ing...?", "contrast": "Why do you always interrupt...? cũng đúng về tần suất, nhưng dạng continuous làm sắc thái bực bội nổi bật hơn.", "collocation": "interrupt someone", "collocation_vi": "ngắt lời ai"}, {"id": 32, "topic": "always + present continuous · repeated excuse", "sentence": "He is always ___ excuses instead of taking responsibility.", "options": ["make", "making", "to make"], "answer": 1, "vi": "Anh ấy cứ luôn viện cớ thay vì chịu trách nhiệm.", "reason": "**is always making** nhấn mạnh hành vi lặp đi lặp lại mà người nói không hài lòng.", "pattern": "be + always + V-ing", "contrast": "always makes = mô tả thường xuyên; is always making = thường mang hàm ý phàn nàn.", "collocation": "make excuses / take responsibility", "collocation_vi": "viện cớ / chịu trách nhiệm"}, {"id": 33, "topic": "get used to + V-ing", "sentence": "I am gradually getting used to ___ in an open-plan office.", "options": ["work", "to work", "working"], "answer": 2, "vi": "Tôi đang dần quen với việc làm việc trong văn phòng không gian mở.", "reason": "Trong **be/get used to**, **to** là giới từ, vì vậy động từ theo sau phải ở dạng **V-ing**.", "pattern": "be/get used to + noun/V-ing", "contrast": "used to + V = từng làm; be used to + V-ing = quen với việc làm", "collocation": "open-plan office", "collocation_vi": "văn phòng không gian mở"}, {"id": 34, "topic": "used to + bare infinitive", "sentence": "I used to ___ near the city centre, but I moved to the suburbs last year.", "options": ["living", "live", "to live"], "answer": 1, "vi": "Tôi từng sống gần trung tâm thành phố nhưng năm ngoái đã chuyển ra ngoại ô.", "reason": "**used to + bare infinitive** diễn tả thói quen/trạng thái trong quá khứ không còn đúng ở hiện tại.", "pattern": "used to + V", "contrast": "used to live = từng sống; be used to living = quen với việc sống", "collocation": "move to the suburbs", "collocation_vi": "chuyển ra ngoại ô"}, {"id": 35, "topic": "would rather + past simple", "sentence": "I would rather you ___ me before making any changes to the schedule.", "options": ["told", "tell", "to tell"], "answer": 0, "vi": "Tôi muốn bạn báo cho tôi trước khi thay đổi lịch.", "reason": "Khi **would rather** có chủ ngữ khác phía sau, dùng **past simple** để nói mong muốn ở hiện tại/tương lai: would rather you told me.", "pattern": "would rather + subject + past simple", "contrast": "I'd rather tell him myself; I'd rather you told him.", "collocation": "make changes to the schedule", "collocation_vi": "thay đổi lịch trình"}, {"id": 36, "topic": "had better + bare infinitive", "sentence": "You had better ___ now if you want to catch the last train.", "options": ["to leave", "leaving", "leave"], "answer": 2, "vi": "Bạn nên rời đi ngay nếu muốn kịp chuyến tàu cuối.", "reason": "**had better + bare infinitive**; không có **to** sau had better.", "pattern": "had better + V", "contrast": "had better leave, không dùng had better to leave.", "collocation": "catch the last train", "collocation_vi": "kịp chuyến tàu cuối"}, {"id": 37, "topic": "wish + past perfect", "sentence": "I wish I ___ so much money on that device; I hardly use it.", "options": ["didn't spend", "hadn't spent", "wouldn't spend"], "answer": 1, "vi": "Tôi ước mình đã không tiêu quá nhiều tiền cho thiết bị đó; tôi hầu như không dùng nó.", "reason": "Hối tiếc về quá khứ dùng **wish + past perfect**: wish I hadn't spent.", "pattern": "wish + subject + had(n't) + V3", "contrast": "wish + past simple = điều trái hiện tại; wish + past perfect = hối tiếc quá khứ", "collocation": "spend money on a device", "collocation_vi": "tiêu tiền vào một thiết bị"}, {"id": 38, "topic": "if only + would · complaint", "sentence": "If only he ___ interrupting people during meetings.", "options": ["would stop", "stops", "had stopped"], "answer": 0, "vi": "Giá mà anh ấy chịu ngừng ngắt lời người khác trong các cuộc họp.", "reason": "**If only + would** có thể dùng để phàn nàn và mong một người thay đổi hành vi gây khó chịu.", "pattern": "if only + subject + would + V", "contrast": "would stop interrupting = mong hành vi lặp lại thay đổi; stopped có thể diễn tả giả định hiện tại nhưng kém rõ sắc thái 'chịu thay đổi'.", "collocation": "interrupt people during meetings", "collocation_vi": "ngắt lời người khác trong cuộc họp"}, {"id": 39, "topic": "look forward to + V-ing", "sentence": "I look forward to ___ from you once the committee has reached a decision.", "options": ["hear", "hearing", "to hear"], "answer": 1, "vi": "Tôi mong nhận được phản hồi từ bạn sau khi ủy ban đưa ra quyết định.", "reason": "Trong **look forward to**, **to** là giới từ, không phải dấu hiệu của infinitive. Vì vậy động từ sau nó phải ở dạng **V-ing**.", "pattern": "look forward to + noun/V-ing", "contrast": "look forward to hearing, không dùng look forward to hear.", "collocation": "reach a decision / hear from someone", "collocation_vi": "đưa ra quyết định / nhận tin từ ai"}, {"id": 40, "topic": "be committed to + V-ing", "sentence": "The organisation is committed to ___ its environmental impact over the next five years.", "options": ["reduce", "reducing", "to reduce"], "answer": 1, "vi": "Tổ chức cam kết giảm tác động môi trường trong năm năm tới.", "reason": "**be committed to** kết thúc bằng giới từ **to**, nên theo sau bởi danh từ hoặc **V-ing**.", "pattern": "be committed to + noun/V-ing", "contrast": "committed to reducing; nhưng decide to reduce vì to trong decide to là infinitive marker.", "collocation": "reduce environmental impact", "collocation_vi": "giảm tác động môi trường"}, {"id": 41, "topic": "admit to + V-ing", "sentence": "He eventually admitted to ___ the figures before submitting the report.", "options": ["altering", "alter", "to alter"], "answer": 0, "vi": "Cuối cùng anh ấy thừa nhận đã sửa các số liệu trước khi nộp báo cáo.", "reason": "Trong **admit to something**, **to** là giới từ. Khi theo sau bằng động từ, dùng **V-ing**.", "pattern": "admit to + noun/V-ing", "contrast": "admit altering và admit to altering đều dùng được; không dùng admit to alter trong nghĩa này.", "collocation": "alter the figures / submit a report", "collocation_vi": "sửa số liệu / nộp báo cáo"}, {"id": 42, "topic": "be accustomed to + V-ing", "sentence": "She is accustomed to ___ under considerable pressure during peak periods.", "options": ["work", "working", "to work"], "answer": 1, "vi": "Cô ấy đã quen với việc làm việc dưới áp lực đáng kể trong những giai đoạn cao điểm.", "reason": "**be accustomed to** = quen với. **to** là giới từ nên dùng **V-ing** sau đó.", "pattern": "be accustomed to + noun/V-ing", "contrast": "accustomed to working tương tự be used to working; khác used to work = từng làm.", "collocation": "work under pressure / peak periods", "collocation_vi": "làm việc dưới áp lực / giai đoạn cao điểm"}, {"id": 43, "topic": "devote ... to + V-ing", "sentence": "The research team devoted several months to ___ the reliability of the data.", "options": ["verify", "verifying", "to verify"], "answer": 1, "vi": "Nhóm nghiên cứu dành vài tháng để xác minh độ tin cậy của dữ liệu.", "reason": "Trong **devote time/resources to**, **to** là giới từ. Vì vậy dùng **V-ing** nếu theo sau bằng động từ.", "pattern": "devote + time/resources + to + V-ing", "contrast": "devote months to verifying, không dùng to verify sau cụm devote ... to.", "collocation": "verify the reliability of data", "collocation_vi": "xác minh độ tin cậy của dữ liệu"}, {"id": 44, "topic": "be opposed to + V-ing", "sentence": "Several residents are strongly opposed to ___ a new car park next to the playground.", "options": ["build", "building", "to build"], "answer": 1, "vi": "Một số cư dân phản đối mạnh mẽ việc xây bãi đỗ xe mới cạnh sân chơi.", "reason": "**be opposed to** = phản đối. **to** là giới từ nên theo sau bởi danh từ hoặc **V-ing**.", "pattern": "be opposed to + noun/V-ing", "contrast": "opposed to building; nhưng refuse to build vì to sau refuse mở đầu infinitive.", "collocation": "strongly opposed to / build a car park", "collocation_vi": "phản đối mạnh mẽ / xây bãi đỗ xe"}, {"id": 45, "topic": "contribute to + V-ing", "sentence": "Regular feedback can contribute to ___ overall performance across the team.", "options": ["improve", "improving", "to improve"], "answer": 1, "vi": "Phản hồi thường xuyên có thể góp phần cải thiện hiệu suất chung của cả nhóm.", "reason": "Trong phrasal/prepositional pattern **contribute to**, **to** là giới từ. Động từ theo sau dùng **V-ing**.", "pattern": "contribute to + noun/V-ing", "contrast": "contribute to improving; không dùng contribute to improve trong cấu trúc này.", "collocation": "improve overall performance", "collocation_vi": "cải thiện hiệu suất tổng thể"}, {"id": 46, "topic": "the key to + V-ing", "sentence": "Clear communication is the key to ___ unnecessary misunderstandings.", "options": ["avoid", "avoiding", "to avoid"], "answer": 1, "vi": "Giao tiếp rõ ràng là chìa khóa để tránh những hiểu lầm không cần thiết.", "reason": "Trong **the key to**, **to** là giới từ. Sau giới từ, động từ chuyển thành **V-ing**.", "pattern": "the key to + noun/V-ing", "contrast": "the key to avoiding; nhưng a way to avoid có to-infinitive.", "collocation": "avoid misunderstandings / clear communication", "collocation_vi": "tránh hiểu lầm / giao tiếp rõ ràng"}, {"id": 47, "topic": "perfect participle clause", "sentence": "Having ___ the final draft, she sent it to the client for approval.", "options": ["complete", "completed", "completing"], "answer": 1, "vi": "Sau khi đã hoàn thành bản thảo cuối, cô ấy gửi nó cho khách hàng phê duyệt.", "reason": "**Having + V3** diễn tả hành động hoàn tất trước hành động ở mệnh đề chính.", "pattern": "Having + V3, subject + past simple", "contrast": "Having completed = sau khi đã hoàn thành.", "collocation": "final draft / send for approval", "collocation_vi": "bản thảo cuối / gửi để phê duyệt"}, {"id": 48, "topic": "despite + V-ing", "sentence": "Despite ___ warned several times, he continued to ignore the safety procedure.", "options": ["to be", "being", "be"], "answer": 1, "vi": "Mặc dù đã được cảnh báo nhiều lần, anh ấy vẫn tiếp tục phớt lờ quy trình an toàn.", "reason": "**Despite** là giới từ, theo sau bởi danh từ hoặc V-ing. Vì mang nghĩa bị động, dùng **being warned**.", "pattern": "despite + being + V3", "contrast": "although he was warned...; despite being warned...", "collocation": "ignore a safety procedure", "collocation_vi": "phớt lờ quy trình an toàn"}, {"id": 49, "topic": "no point in + V-ing", "sentence": "There is no point in ___ about the decision now; it has already been made.", "options": ["arguing", "to argue", "argue"], "answer": 0, "vi": "Giờ tranh cãi về quyết định đó cũng chẳng ích gì; nó đã được đưa ra rồi.", "reason": "Cấu trúc cố định **there is no point in + V-ing**.", "pattern": "there is no point in + V-ing", "contrast": "Sau giới từ in, dùng gerund.", "collocation": "make a decision", "collocation_vi": "đưa ra quyết định"}, {"id": 50, "topic": "object to + V-ing", "sentence": "She objected to ___ treated as though she had no experience.", "options": ["be", "being", "to be"], "answer": 1, "vi": "Cô ấy phản đối việc bị đối xử như thể mình không có kinh nghiệm.", "reason": "Trong **object to**, **to** là giới từ nên theo sau bởi danh từ/V-ing. Vì câu mang nghĩa bị động, dùng **being treated**.", "pattern": "object to + noun/V-ing", "contrast": "to ở đây không phải dấu hiệu của infinitive: object to being treated.", "collocation": "treat someone as though...", "collocation_vi": "đối xử với ai như thể..."}];
+const letters = ['A','B','C'];
+let queue = [...ALL_ITEMS], index = 0, selected = null, checked = false;
+let correct = 0, wrong = 0, mistakes = [];
+let seconds = 60, paused = false, soundOn = true, timerId = null;
+const el = id => document.getElementById(id);
+
+function md(text){ return text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+function fill(sentence, ans=null){
+  return sentence.replace('___', ans ? `<span class="gap">${ans}</span>` : '<span class="gap">___</span>');
+}
+
+function audioTone(kind){
+  if(!soundOn) return;
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const gain = ctx.createGain(); gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(0.0001,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.13,ctx.currentTime+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.45);
+    if(kind==='ok'){
+      [660,880].forEach((f,i)=>{const o=ctx.createOscillator();o.type='sine';o.frequency.value=f;o.connect(gain);o.start(ctx.currentTime+i*.10);o.stop(ctx.currentTime+.28+i*.10);});
+    } else {
+      const o=ctx.createOscillator();o.type='triangle';o.frequency.setValueAtTime(240,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(150,ctx.currentTime+.32);o.connect(gain);o.start();o.stop(ctx.currentTime+.38);
+    }
+    setTimeout(()=>ctx.close(),700);
+  }catch(e){}
+}
+
+function startTimer(){
+  clearInterval(timerId);
+  seconds = 60; updateTimer();
+  timerId = setInterval(()=>{
+    if(paused || checked) return;
+    seconds--; updateTimer();
+    if(seconds<=0){ clearInterval(timerId); timeOut(); }
+  },1000);
+}
+function updateTimer(){
+  el('timer').textContent = seconds+'s';
+  el('timer').classList.toggle('warn', seconds<=10);
+}
+function togglePause(){
+  if(checked) return;
+  paused = !paused;
+  el('card').classList.toggle('paused',paused);
+  el('pauseBtn').textContent = paused ? 'Resume' : 'Pause';
+  el('pauseBtn').classList.toggle('active',paused);
+}
+function toggleSound(){
+  soundOn=!soundOn;
+  el('soundBtn').textContent=soundOn?'Sound on':'Sound off';
+  el('soundBtn').classList.toggle('active',soundOn);
+}
+
+function render(){
+  const item=queue[index]; if(!item) return finish();
+  selected=null; checked=false; paused=false;
+  el('card').classList.remove('paused'); el('pauseBtn').textContent='Pause'; el('pauseBtn').classList.remove('active');
+  el('topic').textContent=item.topic; el('question').innerHTML=fill(item.sentence);
+  el('options').innerHTML='';
+  item.options.forEach((opt,i)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='option';
+    b.innerHTML=`<span class="letter">${letters[i]}</span><span>${opt}</span>`;
+    b.onclick=()=>selectOption(i); el('options').appendChild(b);
+  });
+  el('feedback').classList.remove('show');
+  el('checkBtn').classList.remove('hidden'); el('checkBtn').disabled=true;
+  el('nextBtn').classList.add('hidden'); el('resetOne').disabled=false;
+  updateStatus(); startTimer();
+}
+
+function selectOption(i){
+  if(checked||paused) return;
+  selected=i;
+  [...el('options').children].forEach((b,j)=>b.classList.toggle('selected',j===i));
+  el('checkBtn').disabled=false;
+}
+function resetSelection(){
+  if(checked||paused) return;
+  selected=null; [...el('options').children].forEach(b=>b.classList.remove('selected'));
+  el('checkBtn').disabled=true;
+}
+
+function reveal(item,isCorrect,timeout=false){
+  checked=true; paused=false; clearInterval(timerId);
+  const buttons=[...el('options').children];
+  buttons.forEach((b,i)=>{b.disabled=true;b.classList.remove('selected');if(i===item.answer)b.classList.add('correct');if(!timeout&&i===selected&&i!==item.answer)b.classList.add('wrong');});
+  if(isCorrect){
+    correct++; audioTone('ok'); el('verdict').className='verdict ok';
+    el('verdictText').textContent='Đúng · '+letters[item.answer]+'. '+item.options[item.answer];
+  } else {
+    wrong++; audioTone('bad'); el('verdict').className='verdict bad';
+    el('verdictText').textContent=timeout?'Hết 60 giây · Đáp án: '+letters[item.answer]+'. '+item.options[item.answer]:'Chưa đúng · Đáp án: '+letters[item.answer]+'. '+item.options[item.answer];
+    mistakes.push({id:item.id,sentence:item.sentence,chosen:timeout?'Hết giờ':item.options[selected],answer:item.options[item.answer]});
+  }
+  el('reason').innerHTML=md(item.reason); el('pattern').textContent=item.pattern;
+  el('contrast').innerHTML=md(item.contrast); el('collocation').textContent=item.collocation;
+  el('collocationVi').textContent=item.collocation_vi; el('translation').textContent=item.vi;
+  el('fullEnglish').innerHTML=fill(item.sentence,item.options[item.answer]);
+  el('question').innerHTML=fill(item.sentence,item.options[item.answer]);
+  el('feedback').classList.add('show'); el('checkBtn').classList.add('hidden');
+  el('nextBtn').classList.remove('hidden'); el('nextBtn').textContent=index===queue.length-1?'Xem kết quả':'Câu tiếp theo';
+  el('resetOne').disabled=true; updateStatus();
+}
+function checkAnswer(){ if(selected===null||checked||paused)return; const item=queue[index]; reveal(item,selected===item.answer,false); }
+function timeOut(){ if(checked)return; reveal(queue[index],false,true); }
+function next(){ index++; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function updateStatus(){
+  el('scoreText').textContent=`Đúng ${correct} · Sai ${wrong}`;
+  el('countText').textContent=String(index+1).padStart(2,'0')+' / '+String(queue.length).padStart(2,'0');
+  el('progressBar').style.width=((index+(checked?1:0))/queue.length*100)+'%';
+}
+
+function finish(){
+  clearInterval(timerId); el('drillArea').style.display='none'; el('resultArea').classList.add('show');
+  const total=correct+wrong, pct=total?Math.round(correct/total*100):0;
+  el('finalScore').textContent=correct+' / '+total+' · '+pct+'%';
+  el('finalText').textContent=pct>=85?'B2+ control rất tốt. Hãy luyện lại các câu sai để củng cố contrast patterns.':pct>=70?'Nền tảng khá tốt. Nên luyện lại nhóm đổi nghĩa giữa to V và V-ing.':'Nên làm lại các câu sai, đặc biệt nhóm gerund/infinitive và repeated behaviour.';
+  el('retryWrong').disabled=mistakes.length===0;
+  el('mistakes').innerHTML=mistakes.length?mistakes.map(m=>`<div class="mistake"><strong>Câu ${m.id}</strong> · ${m.sentence}<br>Chọn: ${m.chosen} · Đúng: <strong>${m.answer}</strong></div>`).join(''):'<div class="mistake">Không có câu sai.</div>';
+}
+function restart(items){
+  queue=[...items]; index=0; selected=null; checked=false; correct=0; wrong=0; mistakes=[];
+  el('resultArea').classList.remove('show'); el('drillArea').style.display='block'; render();
+}
+function retryWrong(){
+  const ids=[...new Set(mistakes.map(m=>m.id))]; restart(ALL_ITEMS.filter(x=>ids.includes(x.id)));
+}
+
+el('checkBtn').onclick=checkAnswer; el('nextBtn').onclick=next; el('resetOne').onclick=resetSelection;
+el('pauseBtn').onclick=togglePause; el('soundBtn').onclick=toggleSound;
+el('restartAll').onclick=()=>restart(ALL_ITEMS); el('retryWrong').onclick=retryWrong;
+document.addEventListener('keydown',e=>{
+  if(paused||checked)return;
+  if(['1','2','3'].includes(e.key)) selectOption(Number(e.key)-1);
+  if(e.key==='Enter' && selected!==null) checkAnswer();
+});
+render();
+</script>
+</body>
+</html>
